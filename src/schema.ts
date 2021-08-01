@@ -1,20 +1,30 @@
 import { gql } from 'apollo-server';
 
 export const typeDefs = gql`
-    type Book {
-        title: String
-        author: String
+    type Profile {
+        userName: String!
+        firstName: String
+        lastName: String
+        location: String
+        bio: String
+        links: [String!]
     }
 
-    type Author {
-        name: String
-        books: [Book]
+    input ProfileInput {
+        userName: String!
+        firstName: String!
+        lastName: String!
+        location: String
+        bio: String
+        links: [String!]
     }
 
-    # The "Query" type is special: it lists all of the available queries that
-    # clients can execute, along with the return type for each. In this
-    # case, the "books" query returns an array of zero or more Books (defined above).
     type Query {
-        books: [Book]
+        profiles: [Profile!]
+    }
+
+    type Mutation {
+        # addProfile(input: ProfileInput!): Profile!
+        addProfile(userName: String!): Profile!
     }
 `;

@@ -1,12 +1,20 @@
-import { Book } from './models';
+import { Profile } from './models';
 
-export const books: Book[] = [
+export const profiles: Profile[] = [
     {
-        title: 'The Awakening',
-        author: 'Kate Chopin',
+        userName: '',
+        firstName: '',
+        lastName: '',
+        bio: '',
+        links: [''],
+        location: ''
     },
     {
-        title: 'City of Glass',
-        author: 'Paul Auster',
-    },
+        userName: '',
+        firstName: '',
+        lastName: '',
+        bio: '',
+        links: [''],
+        location: ''
+    }
 ];

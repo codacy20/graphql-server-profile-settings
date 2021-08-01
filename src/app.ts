@@ -1,10 +1,20 @@
 import { ApolloServer } from 'apollo-server';
 import { typeDefs } from './schema';
 import { resolvers } from './resolvers';
+import { ProfileAPI } from './profile-datasources';
+import { PrismaClient } from '@prisma/client';
+
+const prisma = new PrismaClient();
 
 // The ApolloServer constructor requires two parameters: your schema
 // definition and your set of resolvers.
-const server = new ApolloServer({ typeDefs, resolvers });
+const server = new ApolloServer({
+    typeDefs,
+    resolvers,
+    dataSources: () => ({
+        profileAPI: new ProfileAPI({ prisma })
+    })
+});
 
 // The `listen` method launches a web server.
 server.listen().then(({ url }) => {
