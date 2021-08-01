@@ -14,11 +14,16 @@ export const resolvers = {
     Mutation: {
         addProfile: async (
             _,
-            { userName },
+            { input },
             { dataSources }: { dataSources: DataSources }
         ) =>
             dataSources.profileAPI.findOrCreateProfile({
-                userName
+                userName: input.userName,
+                firstName: input.firstName,
+                lastName: input.lastName,
+                bio: input.bio,
+                links: input.links,
+                location: input.location
             })
     }
 };

@@ -1,5 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 import { DataSource } from 'apollo-datasource';
+import { Profile } from './models';
 
 export class ProfileAPI extends DataSource {
     prisma: PrismaClient;
@@ -25,9 +26,16 @@ export class ProfileAPI extends DataSource {
         return profiles;
     }
 
-    async findOrCreateProfile({ userName }) {
+    async findOrCreateProfile(input: Profile) {
         const profiles = await this.prisma.profile.create({
-            data: { userName }
+            data: {
+                userName: input.userName,
+                firstName: input.firstName,
+                lastName: input.lastName,
+                bio: input.bio,
+                links: input.links,
+                location: input.location
+            }
         });
         return profiles;
     }
