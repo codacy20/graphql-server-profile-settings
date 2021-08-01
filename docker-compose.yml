@@ -1,15 +1,17 @@
-version: '3.7'
-services:
-    mongodb_container:
-        image: mongo:latest
-        environment:
-            MONGO_INITDB_ROOT_USERNAME: root
-            MONGO_INITDB_ROOT_PASSWORD: rootpassword
-        ports:
-            - 27017:27017
-        volumes:
-            - mongodb_data_container:/data/db
-        command: [--auth]
+version: '3.1'
 
-volumes:
-    mongodb_data_container:
+services:
+    dbPostgres:
+        image: postgres
+        restart: always
+        environment:
+            POSTGRES_USER: root
+            POSTGRES_PASSWORD: example
+            POSTGRES_DB: mydb
+        ports:
+            - '5432:5432'
+    adminer:
+        image: adminer
+        restart: always
+        ports:
+            - 8080:8080

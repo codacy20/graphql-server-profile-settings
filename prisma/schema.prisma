@@ -2,18 +2,16 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 datasource db {
-  provider = "mongodb"
-  url      = "mongodb://root:rootpassword@localhost:27017/profiles?authSource=admin&retryWrites=false"
+  provider = "postgres"
+  url      = "postgres://root:example@localhost:5432/mydb"
 }
 
 generator client {
-  provider        = "prisma-client-js"
-  previewFeatures = ["mongoDb"]
+  provider = "prisma-client-js"
 }
 
 model Profile {
-  id        String   @default(dbgenerated()) @db.ObjectId
-  userName  String   @id @map("_id")
+  userName  String   @id @map("username")
   firstName String?
   lastName  String?
   location  String?
