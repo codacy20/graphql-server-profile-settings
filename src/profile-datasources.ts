@@ -26,7 +26,7 @@ export class ProfileAPI extends DataSource {
         return profiles;
     }
 
-    async findOrCreateProfile(input: Profile) {
+    async createProfile(input: Profile) {
         const profiles = await this.prisma.profile.create({
             data: {
                 userName: input.userName,
@@ -38,5 +38,24 @@ export class ProfileAPI extends DataSource {
             }
         });
         return profiles;
+    }
+
+    async updateProfile(userName: string, input: Omit<Profile, 'userName'>) {
+        const data = {};
+        if (userName) {
+            if (input.firstName) data['firstName'] = input.firstName;
+            if (input.lastName) data['lastName'] = input.lastName;
+            if (input.bio) data['bio'] = input.bio;
+            if (input.links) data['links'] = input.links;
+            if (input.location) data['location'] = input.location;
+
+            const profile = await this.prisma.profile.update({
+                where: {
+                    userName: userName
+                },
+                data
+            });
+            return profile;
+        }
     }
 }

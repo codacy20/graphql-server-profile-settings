@@ -10,10 +10,18 @@ export const typeDefs = gql`
         links: [String!]
     }
 
-    input ProfileInput {
+    input ProfileCreateInput {
         userName: String!
         firstName: String!
         lastName: String!
+        location: String
+        bio: String
+        links: [String!]
+    }
+
+    input ProfileUpdateInput {
+        firstName: String
+        lastName: String
         location: String
         bio: String
         links: [String!]
@@ -24,7 +32,7 @@ export const typeDefs = gql`
     }
 
     type Mutation {
-        # addProfile(input: ProfileInput!): Profile!
-        addProfile(input: ProfileInput!): Profile!
+        addProfile(input: ProfileCreateInput!): Profile!
+        updateProfile(userName: String, input: ProfileUpdateInput!): Profile
     }
 `;

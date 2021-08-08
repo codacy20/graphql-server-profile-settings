@@ -17,13 +17,18 @@ export const resolvers = {
             { input },
             { dataSources }: { dataSources: DataSources }
         ) =>
-            dataSources.profileAPI.findOrCreateProfile({
+            dataSources.profileAPI.createProfile({
                 userName: input.userName,
                 firstName: input.firstName,
                 lastName: input.lastName,
                 bio: input.bio,
                 links: input.links,
                 location: input.location
-            })
+            }),
+        updateProfile: async (
+            _,
+            { userName, input },
+            { dataSources }: { dataSources: DataSources }
+        ) => dataSources.profileAPI.updateProfile(userName, input)
     }
 };
