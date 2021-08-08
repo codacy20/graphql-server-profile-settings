@@ -17,4 +17,5 @@ model Profile {
   location  String?
   bio       String?
   links     String[]
+  // image     Bytes?    @db.ByteA
 }

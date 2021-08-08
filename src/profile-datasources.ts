@@ -27,6 +27,7 @@ export class ProfileAPI extends DataSource {
     }
 
     async createProfile(input: Profile) {
+        input.userName = input.userName.toLocaleLowerCase();
         const profiles = await this.prisma.profile.create({
             data: {
                 userName: input.userName,
@@ -57,5 +58,14 @@ export class ProfileAPI extends DataSource {
             });
             return profile;
         }
+    }
+
+    async removeProfile(userName: string) {
+        const profile = await this.prisma.profile.delete({
+            where: {
+                userName: userName
+            }
+        });
+        return profile;
     }
 }

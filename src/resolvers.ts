@@ -29,6 +29,11 @@ export const resolvers = {
             _,
             { userName, input },
             { dataSources }: { dataSources: DataSources }
-        ) => dataSources.profileAPI.updateProfile(userName, input)
+        ) => dataSources.profileAPI.updateProfile(userName, input),
+        removeProfile: async (
+            _,
+            { userName },
+            { dataSources }: { dataSources: DataSources }
+        ) => dataSources.profileAPI.removeProfile(userName)
     }
 };

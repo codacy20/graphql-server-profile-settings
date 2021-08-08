@@ -7,6 +7,7 @@ export type Profile = {
     location?: string;
     bio?: string;
     links?: string[];
+    // image?: Uint8Array;
 };
 
 export interface DataSources {

@@ -8,6 +8,7 @@ export const typeDefs = gql`
         location: String
         bio: String
         links: [String!]
+        # image:
     }
 
     input ProfileCreateInput {
@@ -34,5 +35,6 @@ export const typeDefs = gql`
     type Mutation {
         addProfile(input: ProfileCreateInput!): Profile!
         updateProfile(userName: String, input: ProfileUpdateInput!): Profile
+        removeProfile(userName: String!): Profile
     }
 `;
